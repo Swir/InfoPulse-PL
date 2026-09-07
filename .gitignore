@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+*.pyd
+*.log
+*.tmp
+*.bak
+*.spec
+build/
+dist/
+.venv/
+venv/
+env/
+.idea/
+.vscode/
+ghost_config.json
