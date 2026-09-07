@@ -155,6 +155,16 @@ Ustawienia są przechowywane lokalnie w pliku `infopulse_config.json` obok progr
 
 ---
 
+## 🔍 Discoverability
+
+Frazy i słowa kluczowe powiązane z projektem:
+
+`InfoPulse PL` • `polish news bot` • `python information aggregator` • `python news dashboard` • `rss aggregator python` • `rss reader python` • `atom feed python` • `json api aggregator` • `custom api sources python` • `customtkinter dashboard` • `customtkinter futuristic ui` • `gaming ui python` • `python desktop dashboard` • `pynput automation` • `python typing automation` • `autochat python` • `weather crypto news app` • `crypto dashboard python` • `Open-Meteo Python` • `Binance API Python` • `NBP API Python` • `NASA RSS Python` • `Hacker News API Python` • `GitHub status monitor` • `OpenAI status monitor` • `Cloudflare status monitor` • `polish information bot` • `desktop information assistant` • `windows python automation` • `live data aggregator` • `news weather crypto dashboard` • `RSS API desktop app`
+
+Projekt może być przydatny dla osób szukających przykładów łączenia **RSS, Atom, REST/JSON API, CustomTkinter, Pynput i automatyzacji Windows** w jednej aplikacji desktopowej.
+
+---
+
 ## 🛠️ Technologie
 
 - Python
