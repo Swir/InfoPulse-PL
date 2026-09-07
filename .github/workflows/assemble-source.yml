@@ -13,10 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Assemble Python source
+      - name: Assemble and verify Python source
         shell: bash
         run: |
           cat parts/part*.b64 | base64 -d > InfoPulse_PL.py
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+
+          path = Path('InfoPulse_PL.py')
+          data = path.read_bytes()
+          # Naprawa pojedynczego bajtu uszkodzonego podczas transportu base64.
+          data = data.replace(b'sticky="e\xbf"', b'sticky="ew"')
+          path.write_bytes(data)
+
+          expected = 'd1e17bdfe7d537661bbc4e959abfe18f7d153231d23130b01ed5d1856ca8dd5d'
+          actual = hashlib.sha256(data).hexdigest()
+          print('SHA256:', actual)
+          if actual != expected:
+              raise SystemExit(f'Checksum mismatch: expected {expected}, got {actual}')
+          PY
           python -m py_compile InfoPulse_PL.py
       - name: Commit generated source
         shell: bash
