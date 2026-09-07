@@ -1,0 +1,129 @@
+import time
+import random
+import threading
+import requests
+import xml.etree.ElementTree as ET
+from datetime import datetime
+import pyautogui
+import pyperclip
+import keyboard
+import re
+import unicodedata
+import json
+import os
+import sys
+import math
+import traceback
+import tkinter as tk
+import customtkinter as ctk
+from urllib.parse import quote_plus
+
+# --- DANE BAZOWE I ŚCIEŻKI ---
+WOJEWODZTWA = [
+    ("dolnośląskie", "Wrocław", 51.10, 17.03), ("kujawsko-pomorskie", "Bydgoszcz", 53.12, 18.00),
+    ("lubelskie", "Lublin", 51.25, 22.57), ("lubuskie", "Gorzów Wlkp.", 52.73, 15.24),
+    ("łódzkie", "Łódź", 51.75, 19.47), ("małopolskie", "Kraków", 50.06, 19.94),
+    ("mazowieckie", "Warszawa", 52.23, 21.01), ("opolskie", "Opole", 50.67, 17.92),
+    ("podkarpackie", "Rzeszów", 50.04, 22.00), ("podlaskie", "Białystok", 53.13, 23.16),
+    ("pomorskie", "Gdańsk", 54.35, 18.65), ("śląskie", "Katowice", 50.26, 19.03),
+    ("świętokrzyskie", "Kielce", 50.87, 20.63), ("warmińsko-mazurskie", "Olsztyn", 53.78, 20.48),
+    ("wielkopolskie", "Poznań", 52.41, 16.93), ("zachodniopomorskie", "Szczecin", 53.43, 14.55)
+]
+
+BOOKMARKLET = 'javascript:(function(){document.addEventListener("paste",function(e){e.stopPropagation()},!0);alert("Blokada wklejania zdjeta. Sprobuj Ctrl+V.");})();'
+
+if getattr(sys, 'frozen', False):
+    BASE_DIR = os.path.dirname(sys.executable)
+else:
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    
+CONFIG_FILE = os.path.join(BASE_DIR, 'infopulse_config.json')
+
+# --- STYLE KOSMICZNE HUD ---
+HUD_BG = "#030613"         
+HUD_PANEL = "#0A1128"      
+HUD_CYAN = "#00F0FF"       
+HUD_PINK = "#FF007C"       
+HUD_TEXT = "#E0E5FF"       
+HUD_FONT = ("Consolas", 13, "bold")
+HUD_FONT_LG = ("Consolas", 16, "bold")
+
+# --- FUNKCJE POMOCNICZE I API ---
+def wyczysc_tekst(tekst):
+    if not tekst: return ""
+    tekst = str(tekst).replace('\n', ' ').replace('\r', ' ').replace('\t', ' ')
+    return " ".join(tekst.split())
+
+def usun_polskie_znaki(tekst):
+    return unicodedata.normalize('NFD', tekst).encode('ascii', 'ignore').decode('utf-8')
+
+def inteligentne_ucinanie(tekst, limit):
+    if len(tekst) <= limit: return tekst
+    skrocony = tekst[:limit - 3]
+    ostatnia_spacja = skrocony.rfind(' ')
+    if ostatnia_spacja > 0: return skrocony[:ostatnia_spacja] + "..."
+    return skrocony + "..."
+
+def get_current_time(): return datetime.now().strftime("%H:%M:%S")
+
+def get_free_games():
+    try:
+        r = requests.get("https://www.gamerpower.com/api/giveaways?platform=pc", headers={'User-Agent': 'GhostBot/9.0'}, timeout=5)
+        dane = r.json()
+        if dane:
+            gra = random.choice(dane[:5])
+            return f"Zgarnij za darmo: {gra.get('title', '')} (zamiast {gra.get('worth', 'Free')})"
+        return "Gry: Brak ofert"
+    except: return "Gry: Blad API"
+
+def get_cyber_news(wyslane_cyber):
+    try:
+        r = requests.get("https://niebezpiecznik.pl/feed/", timeout=5)
+        root = ET.fromstring(r.content)
+        for item in root.findall('./channel/item'):
+            tytul = wyczysc_tekst(re.sub(r'https?://\S+|\bwww\.\S+', '', item.find('title').text))
+            if tytul not in wyslane_cyber:
+                wyslane_cyber.append(tytul)
+                if len(wyslane_cyber) > 30: wyslane_cyber.pop(0)
+                return f"CyberNews: {tytul}"
+        return "CyberNews: Brak nowych"
+    except: return "CyberNews: Blad RSS"
+
+def get_antyweb_news(wyslane_anty):
+    try:
+        r = requests.get("https://antyweb.pl/feed", timeout=5)
+        root = ET.fromstring(r.content)
+        for item in root.findall('./channel/item'):
+            tytul = wyczysc_tekst(re.sub(r'https?://\S+|\bwww\.\S+', '', item.find('title').text))
+            if tytul not in wyslane_anty:
+                wyslane_anty.append(tytul)
+                if len(wyslane_anty) > 30: wyslane_anty.pop(0)
+                return f"Tech: {tytul}"
+        return "Tech: Brak nowych"
+    except: return "Tech: Blad RSS"
+
+def get_nasa_news():
+    try:
+        r = requests.get("https://www.nasa.gov/rss/dyn/breaking_news.rss", timeout=5)
+        root = ET.fromstring(r.content)
+        items = root.findall('.//item')
+        if items:
+            item = random.choice(items[:5])
+            return f"NASA Space: {wyczysc_tekst(item.find('title').text)}"
+        return "NASA: Brak doniesien"
+    except: return "NASA: Blad RSS"
+
+def get_hackernews():
+    try:
+        top_ids = requests.get("https://hacker-news.firebaseio.com/v0/topstories.json", timeout=5).json()
+        item = requests.get(f"https://hacker-news.firebaseio.com/v0/item/{random.choice(top_ids[:20])}.json", timeout=5).json()
+        if 'title' in item: return f"HackerNews: {item['title']} ({item.get('score', 0)} pkt)"
+        return "HackerNews: Brak danych"
+    except: return "HackerNews: Blad API"
+
+def get_earthquakes():
+    try:
+        r = requests.get("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_day.geojson", timeout=5)
+        eq = r.json()['features'][0]['properties']
+        return f"Trzesienie: {eq['place']} (Mag {eq['mag']})"
+    except: return "Sejsmograf: Blad API"
