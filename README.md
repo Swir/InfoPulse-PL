@@ -1,136 +1,170 @@
 <div align="center">
 
-# 📡 InfoPulse PL
+# 📡 InfoPulse PL v3.2 MAX
 
-### Polish information aggregator, desktop dashboard and auto-posting assistant built with Python
+### Futurystyczny agregator informacji, dashboard desktopowy i automat do wysyłania wiadomości w Pythonie
 
-**News • Weather • Crypto • Technology • Space • Market Data**
+**Wiadomości • Pogoda • Krypto • Cyber • Kosmos • RSS • API • AutoChat**
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![GUI](https://img.shields.io/badge/GUI-CustomTkinter-1F6AA5)
+![GUI](https://img.shields.io/badge/GUI-CustomTkinter-00E5FF)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
-![Language](https://img.shields.io/badge/Language-Polish-DC143C)
-![Status](https://img.shields.io/badge/Status-Active-success)
+![Version](https://img.shields.io/badge/Version-3.2%20MAX-9B5CFF)
+![Status](https://img.shields.io/badge/Status-Active-39FF88)
 
 </div>
 
 ---
 
-## 🚀 About
+## 🚀 O projekcie
 
-**InfoPulse PL** is a modern Python desktop information dashboard that collects data from multiple public sources and combines selected items into compact messages. It is designed as a Polish information aggregator for users who want one interface for news, weather, cryptocurrency prices, exchange rates, technology headlines, space updates and other live information.
+**InfoPulse PL** zbiera informacje z wielu publicznych API i kanałów RSS/Atom, składa je w krótką wiadomość i może wpisać ją do aktualnie aktywnego pola tekstowego. Program ma polski, gamingowo-futurystyczny interfejs zbudowany w **CustomTkinter** i został zaprojektowany przede wszystkim pod Windows.
 
-The application can prepare and send the generated information to the currently focused text field using clipboard paste or simulated keyboard typing.
+W wersji **3.2 MAX** aplikacja obsługuje również własne źródła użytkownika: RSS, Atom oraz JSON API GET. Każde własne źródło można włączać i wyłączać bezpośrednio z głównego dashboardu.
 
 ---
 
-## ✨ Features
+## ✨ Najważniejsze funkcje
 
-| Category | Sources / Functions |
+| Kategoria | Źródła / funkcje |
 |---|---|
-| 📰 News | Google News Poland, Antyweb, Hacker News |
-| 🛡️ Cybersecurity | Niebezpiecznik RSS |
-| 🌦️ Weather | Open-Meteo weather for Polish regions |
-| 🌫️ Air quality | European AQI and PM10 |
-| 💱 Exchange rates | NBP USD / EUR / GBP |
-| ₿ Crypto | BTC, ETH, SOL and DOGE via Binance |
-| 🚀 Space | NASA news and ISS position |
-| 🌍 Earth | USGS earthquake data |
-| 🎮 Gaming | Free PC game offers |
-| 📚 Knowledge | Polish Wikipedia random facts and historical events |
-| ⌨️ Output | Ctrl+V, Shift+Insert or typing simulation |
-| ⚙️ Configuration | Persistent JSON settings |
+| 📰 Wiadomości | Google News PL, RMF24 i dodatkowe kanały RSS |
+| 🛡️ Cyber / Tech | Niebezpiecznik, Antyweb, Hacker News, Ars Technica, GitHub Live |
+| 🌦️ Pogoda | Open-Meteo dla polskich regionów |
+| 🌫️ Środowisko | jakość powietrza, PM10, AQI, indeks UV |
+| 🌊 Morze | warunki na Bałtyku / fale |
+| 💱 Waluty | NBP USD / EUR / GBP |
+| ₿ Krypto | BTC, ETH, SOL, DOGE przez Binance |
+| 🚀 Kosmos | NASA oraz aktualna pozycja ISS |
+| 🌍 Ziemia | trzęsienia ziemi USGS |
+| 🎮 Gry | darmowe gry PC z GamerPower |
+| 📚 Wiedza | Wikipedia — ciekawostki i wydarzenia historyczne |
+| 🟢 Status usług | GitHub, OpenAI, Cloudflare |
+| ➕ Własne źródła | RSS, Atom i JSON API GET z własnymi nagłówkami |
+| ⌨️ Wysyłanie | Pynput Mode, Direct Unicode, Ctrl+V, Shift+Insert, symulacja pisania |
+| ⚙️ Konfiguracja | ustawienia i własne źródła zapisywane lokalnie w JSON |
 
 ---
 
-## 🖥️ Interface
+## 🎛️ Własne źródła RSS / API
 
-InfoPulse PL uses a modern dark dashboard built with **CustomTkinter**. The redesigned interface includes:
+Menedżer **WŁASNE ŹRÓDŁA** pozwala bez edycji kodu:
 
-- clear `ACTIVE / STOPPED` status,
-- separate control panel,
-- grouped information sources,
-- activity log,
-- current interval and message-length cards,
-- clean Windows-friendly layout.
+- dodać kanał **RSS** lub **Atom**,
+- dodać **JSON API GET**,
+- ustawić własną nazwę i prefiks wiadomości,
+- wskazać ścieżkę JSON, np. `data.0.title`,
+- dodać opcjonalne nagłówki HTTP w formacie JSON,
+- przetestować źródło przed użyciem,
+- wyszukiwać, edytować, duplikować i usuwać źródła,
+- włączać i wyłączać każde własne źródło z głównego menu,
+- jednym kliknięciem włączyć lub wyłączyć wszystkie własne źródła.
+
+> Jeśli API wymaga klucza, można przekazać go jako nagłówek, np. `{"X-Api-Key":"TWÓJ_KLUCZ"}`. Nie publikuj prywatnych kluczy API w repozytorium.
 
 ---
 
-## 📦 Installation
+## ⌨️ Pynput Mode
 
-### 1. Clone the repository
+Domyślnym i polecanym trybem jest **Pynput Mode (najlepszy)**. Program wpisuje wiadomość jak klawiatura, bez konieczności korzystania ze schowka, a następnie naciska Enter.
+
+Dostępne są również:
+
+- `Direct Unicode (bez wklejania)`,
+- `Symulacja pisania`,
+- `Wklej: Shift+Insert`,
+- `Wklej: Ctrl+V`.
+
+---
+
+## 🖥️ Interfejs
+
+InfoPulse PL v3.2 MAX posiada ciemny, neonowy dashboard z:
+
+- polskim **Centrum Dowodzenia**,
+- statusem `BOT AKTYWNY / BOT WYŁĄCZONY`,
+- kartami źródeł, interwału, limitu tekstu i silnika wejścia,
+- pogrupowaną matrycą źródeł,
+- osobną sekcją własnych RSS/API z przełącznikami ON/OFF,
+- responsywnym menedżerem własnych źródeł,
+- wyszukiwarką źródeł i podglądem testów,
+- dziennikiem aktywności.
+
+---
+
+## 📦 Instalacja
+
+### 1. Pobierz repozytorium
 
 ```bash
 git clone https://github.com/Swir/InfoPulse-PL.git
 cd InfoPulse-PL
 ```
 
-### 2. Install dependencies
+### 2. Zainstaluj biblioteki
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Run InfoPulse PL
+### 3. Uruchom program
 
 ```bash
-python InfoPulse_PL_v2.py
+python InfoPulse_PL.py
 ```
 
 ---
 
-## ⚙️ How It Works
+## ⚙️ Jak działa
 
 ```text
-Public APIs / RSS feeds
-          │
-          ▼
-     InfoPulse PL
-          │
-          ├── Select enabled modules
-          ├── Build compact information message
-          ├── Apply character limit
-          │
-          ▼
-Clipboard paste / keyboard simulation
-          │
-          ▼
-Currently focused text field
+Publiczne API / RSS / Atom / własne JSON API
+                    │
+                    ▼
+              InfoPulse PL
+                    │
+       ┌────────────┼────────────┐
+       │            │            │
+  wybór źródeł   limit tekstu   interwał
+       │            │            │
+       └────────────┼────────────┘
+                    ▼
+          składanie wiadomości
+                    │
+                    ▼
+       Pynput / Direct Unicode / paste
+                    │
+                    ▼
+          aktywne pole tekstowe
 ```
 
 ---
 
-## 🔧 Main Settings
+## 🔧 Główne ustawienia
 
-| Setting | Description |
+| Ustawienie | Opis |
 |---|---|
-| Message length | Maximum number of characters in one generated message |
-| Interval | Delay between generated messages |
-| Output method | Shift+Insert, Ctrl+V or simulated typing |
-| Typing speed | Fast, natural or slow typing simulation |
-| Sources | Enable or disable individual information modules |
+| Limit znaków | maksymalna długość jednej wiadomości |
+| Interwał | czas pomiędzy kolejnymi wiadomościami |
+| Sposób wysyłania | Pynput, Direct Unicode, symulacja lub wklejanie |
+| Prędkość pisania | szybko / naturalnie / wolno |
+| Źródła | osobne przełączniki dla każdego modułu |
+| Własne źródła | niezależne przełączniki RSS/API w głównym menu |
 
-Settings are stored locally in `ghost_config.json` next to the application.
-
----
-
-## 🔍 Discoverability
-
-Common search terms related to this project:
-
-`polish news bot` • `python information aggregator` • `python news dashboard` • `weather crypto news app` • `customtkinter dashboard` • `polish information bot` • `rss news aggregator python` • `crypto weather dashboard` • `desktop information assistant` • `python auto posting tool` • `polish news aggregator`
+Ustawienia są przechowywane lokalnie w pliku `infopulse_config.json` obok programu.
 
 ---
 
-## 🛠️ Built With
+## 🛠️ Technologie
 
 - Python
 - CustomTkinter
 - Requests
+- Pynput
 - PyAutoGUI
 - Pyperclip
 - Keyboard
-- XML / RSS feeds
+- XML / RSS / Atom
 - Open-Meteo
 - Binance API
 - NBP API
@@ -138,16 +172,17 @@ Common search terms related to this project:
 - Hacker News API
 - USGS
 - Wikipedia API
+- GitHub Status / Events
 
 ---
 
-## ⚠️ Responsible Use
+## ⚠️ Odpowiedzialne użycie
 
-InfoPulse PL automates text entry into the currently focused application. Use automation only where it is allowed and avoid flooding chats, services or communities with unwanted messages. External APIs and RSS feeds may change or become temporarily unavailable.
+InfoPulse PL automatyzuje wpisywanie tekstu do aktualnie aktywnego pola. Używaj automatyzacji tam, gdzie jest to dozwolone. Nie wykorzystuj programu do spamu, floodowania ani wysyłania niechcianych wiadomości. Zewnętrzne API i kanały RSS mogą zmieniać format lub być czasowo niedostępne.
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 Autor
 
 Developed by **Swir** — [@Swir](https://github.com/Swir)
 
@@ -155,10 +190,10 @@ Developed by **Swir** — [@Swir](https://github.com/Swir)
 
 <div align="center">
 
-### 📡 One dashboard. Many information streams.
+### 📡 Jedno centrum. Dziesiątki strumieni informacji.
 
-**Collect • Combine • Share**
+**Zbieraj • Łącz • Wysyłaj**
 
-⭐ Star the repository if you find it useful!
+⭐ Jeśli projekt Ci się podoba, zostaw gwiazdkę!
 
 </div>
