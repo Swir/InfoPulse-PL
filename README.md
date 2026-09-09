@@ -16,6 +16,18 @@
 
 ---
 
+## English — Python RSS reader and information dashboard
+
+**InfoPulse PL** is a Windows-oriented desktop information aggregator with a Polish CustomTkinter interface. It brings RSS/Atom feeds and JSON APIs into one dashboard, including news, weather and other information sources. You can add your own feeds and configure each source independently.
+
+The optional AutoChat workflow types generated messages into the active text field. Choose the intended destination before enabling it.
+
+**Quick start:** install Python 3.10+, clone this repository, run `pip install -r requirements.txt`, then `python InfoPulse_PL.py`. Detailed source and automation settings are documented below in Polish.
+
+[Browse more SWIR utilities →](https://github.com/Swir#readme)
+
+---
+
 ## 🚀 O projekcie
 
 **InfoPulse PL** zbiera informacje z wielu publicznych API i kanałów RSS/Atom, składa je w krótką wiadomość i może wpisać ją do aktualnie aktywnego pola tekstowego. Program ma polski, gamingowo-futurystyczny interfejs zbudowany w **CustomTkinter** i został zaprojektowany przede wszystkim pod Windows.
