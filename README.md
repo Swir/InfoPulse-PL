@@ -1,221 +1,167 @@
+<!-- SWIR-README-STANDARD:v2 -->
+
 <div align="center">
 
-# 📡 InfoPulse PL v3.2 MAX
+<img width="100%" src="assets/readme/hero.svg" alt="InfoPulse PL — Polish Windows information dashboard using RSS and public APIs" />
 
-### Futurystyczny agregator informacji, dashboard desktopowy i automat do wysyłania wiadomości w Pythonie
+# InfoPulse PL
 
-**Wiadomości • Pogoda • Krypto • Cyber • Kosmos • RSS • API • AutoChat**
+**A Polish desktop dashboard that combines RSS, public APIs and optional text-input automation.**
 
-![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
-![GUI](https://img.shields.io/badge/GUI-CustomTkinter-00E5FF)
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
-![Version](https://img.shields.io/badge/Version-3.2%20MAX-9B5CFF)
-![Status](https://img.shields.io/badge/Status-Active-39FF88)
+![Python](https://img.shields.io/badge/Python-3.10%2B-02050A?style=for-the-badge&logo=python&logoColor=62E5FF)
+![Windows](https://img.shields.io/badge/Windows-x64-02050A?style=for-the-badge&logo=windows11&logoColor=62E5FF)
+![GUI](https://img.shields.io/badge/GUI-CustomTkinter-02050A?style=for-the-badge&logo=python&logoColor=62E5FF)
+![Release](https://img.shields.io/badge/Release-v3.2.0-02050A?style=for-the-badge&logo=github&logoColor=62E5FF)
+
+[![Author](https://img.shields.io/badge/by-Swir-0088FF?style=flat-square&logo=github)](https://github.com/Swir)
+[![Stars](https://img.shields.io/github/stars/Swir/InfoPulse-PL?style=flat-square&color=0088FF)](https://github.com/Swir/InfoPulse-PL/stargazers)
+
+[**Highlights**](#-highlights) · [**Quick Start**](#-quick-start) · [**Sources**](#-data-sources--custom-sources) · [**Safety**](#-automation--responsible-use) · [**Release**](#-progress--release-status)
 
 </div>
 
----
+<img width="100%" src="https://raw.githubusercontent.com/Swir/Swir/main/assets/power-divider-v4.svg" alt="SWIR electric divider" />
 
-## English — Python RSS reader and information dashboard
+## 📍 Project Status
 
-**InfoPulse PL** is a Windows-oriented desktop information aggregator with a Polish CustomTkinter interface. It brings RSS/Atom feeds and JSON APIs into one dashboard, including news, weather and other information sources. You can add your own feeds and configure each source independently.
-
-The optional AutoChat workflow types generated messages into the active text field. Choose the intended destination before enabling it.
-
-**Quick start:** install Python 3.10+, clone this repository, run `pip install -r requirements.txt`, then `python InfoPulse_PL.py`. Detailed source and automation settings are documented below in Polish.
-
-[Browse more SWIR utilities →](https://github.com/Swir#readme)
-
----
-
-## 🚀 O projekcie
-
-**InfoPulse PL** zbiera informacje z wielu publicznych API i kanałów RSS/Atom, składa je w krótką wiadomość i może wpisać ją do aktualnie aktywnego pola tekstowego. Program ma polski, gamingowo-futurystyczny interfejs zbudowany w **CustomTkinter** i został zaprojektowany przede wszystkim pod Windows.
-
-W wersji **3.2 MAX** aplikacja obsługuje również własne źródła użytkownika: RSS, Atom oraz JSON API GET. Każde własne źródło można włączać i wyłączać bezpośrednio z głównego dashboardu.
-
----
-
-## ✨ Najważniejsze funkcje
-
-| Kategoria | Źródła / funkcje |
+| Item | Current state |
 |---|---|
-| 📰 Wiadomości | Google News PL, RMF24 i dodatkowe kanały RSS |
-| 🛡️ Cyber / Tech | Niebezpiecznik, Antyweb, Hacker News, Ars Technica, GitHub Live |
-| 🌦️ Pogoda | Open-Meteo dla polskich regionów |
-| 🌫️ Środowisko | jakość powietrza, PM10, AQI, indeks UV |
-| 🌊 Morze | warunki na Bałtyku / fale |
-| 💱 Waluty | NBP USD / EUR / GBP |
-| ₿ Krypto | BTC, ETH, SOL, DOGE przez Binance |
-| 🚀 Kosmos | NASA oraz aktualna pozycja ISS |
-| 🌍 Ziemia | trzęsienia ziemi USGS |
-| 🎮 Gry | darmowe gry PC z GamerPower |
-| 📚 Wiedza | Wikipedia — ciekawostki i wydarzenia historyczne |
-| 🟢 Status usług | GitHub, OpenAI, Cloudflare |
-| ➕ Własne źródła | RSS, Atom i JSON API GET z własnymi nagłówkami |
-| ⌨️ Wysyłanie | Pynput Mode, Direct Unicode, Ctrl+V, Shift+Insert, symulacja pisania |
-| ⚙️ Konfiguracja | ustawienia i własne źródła zapisywane lokalnie w JSON |
+| Application | InfoPulse PL `v3.2 MAX` source line |
+| Interface | Polish CustomTkinter desktop UI |
+| Primary platform | Windows; public x64 package available |
+| Latest public release | [`v3.2.0`](https://github.com/Swir/InfoPulse-PL/releases/tag/v3.2.0) |
+| Product progress | **N/A** — no canonical measurable roadmap exists |
 
----
+<p align="center">
+  <img width="100%" src="assets/readme/progress-card.svg" alt="InfoPulse PL product readiness — N/A because no canonical measurable roadmap exists" />
+</p>
 
-## 🎛️ Własne źródła RSS / API
+The public release and product-completion progress are intentionally separate. Without a reproducible roadmap denominator, this repository does not invent a completion percentage. See [verification notes](docs/README-VERIFICATION.md).
 
-Menedżer **WŁASNE ŹRÓDŁA** pozwala bez edycji kodu:
+## 🚀 Overview
 
-- dodać kanał **RSS** lub **Atom**,
-- dodać **JSON API GET**,
-- ustawić własną nazwę i prefiks wiadomości,
-- wskazać ścieżkę JSON, np. `data.0.title`,
-- dodać opcjonalne nagłówki HTTP w formacie JSON,
-- przetestować źródło przed użyciem,
-- wyszukiwać, edytować, duplikować i usuwać źródła,
-- włączać i wyłączać każde własne źródło z głównego menu,
-- jednym kliknięciem włączyć lub wyłączyć wszystkie własne źródła.
+**InfoPulse PL** collects short information items from RSS/Atom feeds and public JSON APIs, presents them in a Polish desktop dashboard and can combine selected items into outgoing text. It includes built-in information modules plus user-configurable RSS/Atom and JSON GET sources.
 
-> Jeśli API wymaga klucza, można przekazać go jako nagłówek, np. `{"X-Api-Key":"TWÓJ_KLUCZ"}`. Nie publikuj prywatnych kluczy API w repozytorium.
+The optional input-automation workflow can type or paste the generated text into the **currently active field**. That feature requires deliberate focus on the intended destination and should only be used where automated posting/input is permitted.
 
----
+## ✨ Highlights
 
-## ⌨️ Pynput Mode
+| Area | Current capability |
+|---|---|
+| 📰 News & tech | RSS/API-based news and technology sources, including Polish feeds and Hacker News. |
+| 🌦️ Weather & environment | Open-Meteo weather plus air-quality/UV-related modules for Polish regions. |
+| 💱 Markets | NBP currency rates and selected cryptocurrency prices from Binance endpoints. |
+| 🚀 Space & Earth | NASA RSS, ISS position and USGS earthquake information. |
+| 🎮 Other live data | Free-game and knowledge/status modules where their upstream endpoints are available. |
+| ➕ Custom sources | User-defined RSS, Atom and JSON GET sources with configurable labels and optional HTTP headers. |
+| 🎛️ Source controls | Individual source enable/disable controls and local configuration storage. |
+| ⌨️ Optional input automation | Pynput/direct Unicode/clipboard-style workflows for the active text field. |
+| 🌙 Desktop dashboard | Dark CustomTkinter interface with activity/status information. |
 
-Domyślnym i polecanym trybem jest **Pynput Mode (najlepszy)**. Program wpisuje wiadomość jak klawiatura, bez konieczności korzystania ze schowka, a następnie naciska Enter.
+External services are independent dependencies. A feature being present in the source does not guarantee that every upstream API/feed is currently reachable or unchanged.
 
-Dostępne są również:
+## ⚙️ Quick Start
 
-- `Direct Unicode (bez wklejania)`,
-- `Symulacja pisania`,
-- `Wklej: Shift+Insert`,
-- `Wklej: Ctrl+V`.
+### Recommended — Windows release
 
----
+The existing [`v3.2.0`](https://github.com/Swir/InfoPulse-PL/releases/tag/v3.2.0) release provides:
 
-## 🖥️ Interfejs
+- `InfoPulse-PL.exe`;
+- `InfoPulse-PL-v3.2.0-Windows-x64.zip`;
+- a SHA-256 sidecar for the ZIP.
 
-InfoPulse PL v3.2 MAX posiada ciemny, neonowy dashboard z:
+Download from the GitHub Release page and keep the checksum sidecar if you want to verify the archive locally.
 
-- polskim **Centrum Dowodzenia**,
-- statusem `BOT AKTYWNY / BOT WYŁĄCZONY`,
-- kartami źródeł, interwału, limitu tekstu i silnika wejścia,
-- pogrupowaną matrycą źródeł,
-- osobną sekcją własnych RSS/API z przełącznikami ON/OFF,
-- responsywnym menedżerem własnych źródeł,
-- wyszukiwarką źródeł i podglądem testów,
-- dziennikiem aktywności.
-
----
-
-## 📦 Instalacja
-
-### 1. Pobierz repozytorium
+### From source
 
 ```bash
 git clone https://github.com/Swir/InfoPulse-PL.git
 cd InfoPulse-PL
-```
-
-### 2. Zainstaluj biblioteki
-
-```bash
-pip install -r requirements.txt
-```
-
-### 3. Uruchom program
-
-```bash
+python -m pip install -r requirements.txt
 python InfoPulse_PL.py
 ```
 
----
+The README's documented source target is Python **3.10+**. The current Windows release workflow explicitly builds with Python **3.11** and validates `InfoPulse_PL.py` before PyInstaller packaging.
 
-## ⚙️ Jak działa
+## 📋 Requirements / Compatibility
 
-```text
-Publiczne API / RSS / Atom / własne JSON API
-                    │
-                    ▼
-              InfoPulse PL
-                    │
-       ┌────────────┼────────────┐
-       │            │            │
-  wybór źródeł   limit tekstu   interwał
-       │            │            │
-       └────────────┼────────────┘
-                    ▼
-          składanie wiadomości
-                    │
-                    ▼
-       Pynput / Direct Unicode / paste
-                    │
-                    ▼
-          aktywne pole tekstowe
-```
+- Windows-oriented desktop environment for the intended GUI/input-automation workflow.
+- Python 3.10+ when running from source; release CI uses Python 3.11.
+- Network access for live RSS/API modules.
+- Dependencies from [`requirements.txt`](requirements.txt): `requests`, `customtkinter`, `pyautogui`, `pyperclip`, `keyboard` and `pynput`.
 
----
+The public release is explicitly packaged as **Windows x64**. This migration does not claim equivalent packaged support for Linux or macOS.
 
-## 🔧 Główne ustawienia
+## 🌐 Data Sources & Custom Sources
 
-| Ustawienie | Opis |
+The current source includes modules using services/feeds such as Google News, RMF24, Niebezpiecznik, Antyweb, Hacker News, Ars Technica, Open-Meteo, NBP, Binance, NASA, Wikipedia, USGS, GamerPower and public service-status endpoints.
+
+Custom sources let the user configure RSS/Atom feeds or JSON GET endpoints, including an optional JSON path and optional request headers. If a source requires an API key, keep that secret out of the repository and out of screenshots/logs.
+
+Because these are third-party services, formats, rate limits, URLs and availability can change independently of InfoPulse PL.
+
+## ⌨️ Automation & Responsible Use
+
+InfoPulse PL can send generated text through keyboard/input helpers. Treat this as **local user-directed automation**, not an unattended broadcast system:
+
+1. Select and verify the intended application/text field before enabling automated input.
+2. Use reasonable intervals and comply with the destination service's rules.
+3. Do not use the program for spam, flooding, unwanted messages or evading platform restrictions.
+4. Stop automation before changing focus to another application or sensitive field.
+5. Review generated text and external-source accuracy before sending it onward.
+
+The software operates on the active desktop input context, so focus mistakes can send text to the wrong place.
+
+## 🧠 Technology / Architecture
+
+| Layer | Technology / role |
 |---|---|
-| Limit znaków | maksymalna długość jednej wiadomości |
-| Interwał | czas pomiędzy kolejnymi wiadomościami |
-| Sposób wysyłania | Pynput, Direct Unicode, symulacja lub wklejanie |
-| Prędkość pisania | szybko / naturalnie / wolno |
-| Źródła | osobne przełączniki dla każdego modułu |
-| Własne źródła | niezależne przełączniki RSS/API w głównym menu |
+| Main application | [`InfoPulse_PL.py`](InfoPulse_PL.py) |
+| GUI | CustomTkinter + Tkinter |
+| HTTP / feeds | `requests`, XML parsing, JSON APIs |
+| Input automation | pynput, PyAutoGUI, keyboard, Pyperclip |
+| Local config | `infopulse_config.json` beside the source/executable location |
+| Packaging | PyInstaller Windows one-file/windowed build |
+| Release automation | [`.github/workflows/release.yml`](.github/workflows/release.yml) |
+| Source assembly | [`.github/workflows/assemble-source.yml`](.github/workflows/assemble-source.yml) for the repository's chunked source transport workflow |
 
-Ustawienia są przechowywane lokalnie w pliku `infopulse_config.json` obok programu.
+## 📊 Progress & Release Status
 
----
+<p align="center">
+  <img width="100%" src="assets/readme/progress-mini.svg" alt="InfoPulse PL product readiness — N/A because no canonical measurable roadmap exists" />
+</p>
 
-## 🔍 Discoverability
+**Product readiness: N/A.** There is no authoritative `ROADMAP.md` or equivalent measurable scope from which a truthful percentage can be calculated. The SVG generator therefore emits N/A and no filled progress segment.
 
-Frazy i słowa kluczowe powiązane z projektem:
+The latest verified public release is **v3.2.0**, published September 12, 2026, with a Windows x64 ZIP, checksum sidecar and standalone EXE. That release status is not presented as a completion percentage.
 
-`InfoPulse PL` • `polish news bot` • `python information aggregator` • `python news dashboard` • `rss aggregator python` • `rss reader python` • `atom feed python` • `json api aggregator` • `custom api sources python` • `customtkinter dashboard` • `customtkinter futuristic ui` • `gaming ui python` • `python desktop dashboard` • `pynput automation` • `python typing automation` • `autochat python` • `weather crypto news app` • `crypto dashboard python` • `Open-Meteo Python` • `Binance API Python` • `NBP API Python` • `NASA RSS Python` • `Hacker News API Python` • `GitHub status monitor` • `OpenAI status monitor` • `Cloudflare status monitor` • `polish information bot` • `desktop information assistant` • `windows python automation` • `live data aggregator` • `news weather crypto dashboard` • `RSS API desktop app`
+[**InfoPulse PL v3.2.0 →**](https://github.com/Swir/InfoPulse-PL/releases/tag/v3.2.0) · [**All releases →**](https://github.com/Swir/InfoPulse-PL/releases)
 
-Projekt może być przydatny dla osób szukających przykładów łączenia **RSS, Atom, REST/JSON API, CustomTkinter, Pynput i automatyzacji Windows** w jednej aplikacji desktopowej.
+## ⚠️ Limitations / Notes
 
----
+- The application interface is Polish.
+- Live data depends on external APIs/feeds and may fail or change independently.
+- Automated text input depends on the active desktop focus.
+- No live sweep of every third-party endpoint was performed for this README migration.
+- No `LICENSE` file is currently present; this migration does not infer or assign licensing terms.
+- This documentation migration does not change source behavior, API endpoints, dependencies, release packages, tags or workflows.
 
-## 🛠️ Technologie
+## 🔎 Search Keywords
 
-- Python
-- CustomTkinter
-- Requests
-- Pynput
-- PyAutoGUI
-- Pyperclip
-- Keyboard
-- XML / RSS / Atom
-- Open-Meteo
-- Binance API
-- NBP API
-- NASA RSS
-- Hacker News API
-- USGS
-- Wikipedia API
-- GitHub Status / Events
+`InfoPulse PL` • `python information dashboard` • `RSS aggregator Python` • `Atom feed reader` • `JSON API desktop app` • `CustomTkinter dashboard` • `Windows information dashboard` • `Open-Meteo Python` • `Binance API dashboard` • `NBP currency Python` • `public API aggregator` • `custom RSS sources` • `desktop news dashboard` • `local text automation`
 
----
-
-## ⚠️ Odpowiedzialne użycie
-
-InfoPulse PL automatyzuje wpisywanie tekstu do aktualnie aktywnego pola. Używaj automatyzacji tam, gdzie jest to dozwolone. Nie wykorzystuj programu do spamu, floodowania ani wysyłania niechcianych wiadomości. Zewnętrzne API i kanały RSS mogą zmieniać format lub być czasowo niedostępne.
-
----
-
-## 👨‍💻 Autor
-
-Developed by **Swir** — [@Swir](https://github.com/Swir)
-
----
+<img width="100%" src="https://raw.githubusercontent.com/Swir/Swir/main/assets/power-divider-v4.svg" alt="SWIR electric divider" />
 
 <div align="center">
 
-### 📡 Jedno centrum. Dziesiątki strumieni informacji.
+<img src="assets/readme/project-icon.svg" width="72" alt="InfoPulse PL project icon" />
 
-**Zbieraj • Łącz • Wysyłaj**
+### `COLLECT • REVIEW • PULSE`
 
-⭐ Jeśli projekt Ci się podoba, zostaw gwiazdkę!
+**InfoPulse PL — by Swir**
+
+⭐ **If this project is useful, consider leaving a star.**
+
+[**← SWIR profile**](https://github.com/Swir) · [**All projects →**](https://github.com/Swir?tab=repositories) · [**Report an issue**](https://github.com/Swir/InfoPulse-PL/issues)
 
 </div>
